@@ -1,18 +1,20 @@
 package com.marinhosoftware.hotelurbano.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
 import com.marinhosoftware.hotelurbano.domain.enums.TipoQuarto;
 
 @Entity
 public class Quarto implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -20,8 +22,11 @@ public class Quarto implements Serializable {
 	private Integer id;
 	private String numero;
 	private String andar;
-	private TipoQuarto tipoQuarto;
-	private StatusQuarto status;
+	private Integer tipoQuarto;
+	private Integer status;
+	
+	@OneToMany(mappedBy = "quarto")
+	private List<Manutencao> manutencoes = new ArrayList<>();
 	
 	public Quarto() {
 	}
@@ -31,8 +36,8 @@ public class Quarto implements Serializable {
 		this.id = id;
 		this.numero = numero;
 		this.andar = andar;
-		this.tipoQuarto = tipoQuarto;
-		this.status = status;
+		this.tipoQuarto = tipoQuarto.getCod();
+		this.status = status.getCod();
 	}
 
 	public Integer getId() {
@@ -60,19 +65,27 @@ public class Quarto implements Serializable {
 	}
 
 	public TipoQuarto getTipoQuarto() {
-		return tipoQuarto;
+		return TipoQuarto.toEnum(tipoQuarto);
 	}
 
 	public void setTipoQuarto(TipoQuarto tipoQuarto) {
-		this.tipoQuarto = tipoQuarto;
+		this.tipoQuarto = tipoQuarto.getCod();
 	}
 
 	public StatusQuarto getStatus() {
-		return status;
+		return StatusQuarto.toEnum(status);
 	}
 
 	public void setStatus(StatusQuarto status) {
-		this.status = status;
+		this.status = status.getCod();
+	}
+	
+	public List<Manutencao> getManutencoes() {
+		return manutencoes;
+	}
+
+	public void setManutencoes(List<Manutencao> manutencoes) {
+		this.manutencoes = manutencoes;
 	}
 
 	@Override
