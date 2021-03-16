@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.marinhosoftware.hotelurbano.domain.Quarto;
 import com.marinhosoftware.hotelurbano.repositories.QuartoRepository;
+import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
 
 @Service
 public class QuartoService {
@@ -16,7 +17,8 @@ public class QuartoService {
 	
 	public Quarto find(Integer id) {
 		Optional<Quarto> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Quarto.class.getName()));
 	}
 
 }
