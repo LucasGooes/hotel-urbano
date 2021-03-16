@@ -29,6 +29,9 @@ public class Quarto implements Serializable {
 	@OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL)
 	private List<Manutencao> manutencoes = new ArrayList<>();
 	
+	//MUITOS PRA MUITOS
+	private List<Reserva> reservas = new ArrayList<>();
+	
 	public Quarto() {
 	}
 
@@ -87,6 +90,14 @@ public class Quarto implements Serializable {
 
 	public void setManutencoes(List<Manutencao> manutencoes) {
 		this.manutencoes = manutencoes;
+	}
+	
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 
 	@Override

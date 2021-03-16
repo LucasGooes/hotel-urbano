@@ -1,6 +1,9 @@
 package com.marinhosoftware.hotelurbano.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -13,7 +16,8 @@ import javax.persistence.Id;
 import com.marinhosoftware.hotelurbano.domain.enums.Sexo;
 
 @Entity
-public class Cliente {
+public class Cliente implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +29,8 @@ public class Cliente {
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
+	
+	private List<Reserva> reservas = new ArrayList<>();
 	
 	public Cliente() {
 	}
@@ -84,6 +90,14 @@ public class Cliente {
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+	
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 	
 	@Override
