@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Quarto implements Serializable {
 	private Integer tipoQuarto;
 	private Integer status;
 	
-	@OneToMany(mappedBy = "quarto")
+	@OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL)
 	private List<Manutencao> manutencoes = new ArrayList<>();
 	
 	public Quarto() {
