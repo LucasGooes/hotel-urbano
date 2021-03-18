@@ -5,11 +5,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+@Entity
 public class Reserva implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataInicio;
@@ -19,11 +31,18 @@ public class Reserva implements Serializable {
 	private int quantDias;
 	private double valordiaria;
 	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
-	//RELAÇÃO DE MUITOS PRA MUITOS
+	@ManyToMany
+	@JoinTable(name = "RESERVA_QUARTO",
+				joinColumns = @JoinColumn(name = "reserva_id"),
+				inverseJoinColumns = @JoinColumn(name = "quarto_id")
+			)
 	private List<Quarto> quartos = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "reserva")
 	private List<Servico> servicos = new ArrayList<>();
 	
 	public Reserva() {

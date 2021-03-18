@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
@@ -29,7 +30,7 @@ public class Quarto implements Serializable {
 	@OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL)
 	private List<Manutencao> manutencoes = new ArrayList<>();
 	
-	//MUITOS PRA MUITOS
+	@ManyToMany(mappedBy = "quartos")
 	private List<Reserva> reservas = new ArrayList<>();
 	
 	public Quarto() {
