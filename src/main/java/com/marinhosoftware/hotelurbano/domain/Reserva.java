@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,7 +43,7 @@ public class Reserva implements Serializable {
 			)
 	private List<Quarto> quartos = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "reserva")
+	@OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL)
 	private List<Servico> servicos = new ArrayList<>();
 	
 	public Reserva() {
@@ -53,7 +54,7 @@ public class Reserva implements Serializable {
 		super();
 		this.id = id;
 		this.dataInicio = dataInicio;
-		this.dataFim = dataFim;
+		this.dataFim = (dataFim==null) ? null : dataFim;
 		this.valorTotal = valorTotal;
 		this.quantDias = quantDias;
 		this.valordiaria = valordiaria;

@@ -2,7 +2,7 @@ package com.marinhosoftware.hotelurbano.domain.enums;
 
 public enum Sexo {
 
-	MASNUCLINO(1, "Masculino"),
+	MASCULINO(1, "Masculino"),
 	FEMININO(2, "Feminino");
 	
 	private int cod;
