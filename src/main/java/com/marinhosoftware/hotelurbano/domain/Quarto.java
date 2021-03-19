@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
 import com.marinhosoftware.hotelurbano.domain.enums.TipoQuarto;
 
@@ -93,6 +94,7 @@ public class Quarto implements Serializable {
 		this.manutencoes = manutencoes;
 	}
 	
+	@JsonIgnore
 	public List<Reserva> getReservas() {
 		return reservas;
 	}
