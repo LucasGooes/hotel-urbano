@@ -21,8 +21,8 @@ public class QuartoResource {
 	@Autowired
 	private QuartoService service;
 	
-	@RequestMapping(value = "/{id}" ,method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Quarto> find(@PathVariable Integer id) {
 		Quarto obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
@@ -33,6 +33,13 @@ public class QuartoResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Quarto obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 
 }

@@ -25,5 +25,10 @@ public class QuartoService {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+	public Quarto update(Quarto obj) {
+		
+		return repo.save(obj);
+	}
 
 }
