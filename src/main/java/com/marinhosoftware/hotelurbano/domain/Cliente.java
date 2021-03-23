@@ -28,7 +28,7 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String rg;
 	private String cpf;
-	private Sexo sexo;
+	private Integer sexo;
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
@@ -45,7 +45,7 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 		this.rg = rg;
 		this.cpf = cpf;
-		this.sexo = sexo;
+		this.sexo = sexo.getCod();
 	}
 
 	public Integer getId() {
@@ -81,11 +81,11 @@ public class Cliente implements Serializable {
 	}
 
 	public Sexo getSexo() {
-		return sexo;
+		return Sexo.toEnum(sexo);
 	}
 
 	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
+		this.sexo = sexo.getCod();
 	}
 	
 	public Set<String> getTelefones() {

@@ -22,5 +22,9 @@ public class QuartoResource {
 		Quarto obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
+	public ResponseEntity<void> insert() {
+		return ResponseEntity.created(uri).build;
+	}
 
 }
