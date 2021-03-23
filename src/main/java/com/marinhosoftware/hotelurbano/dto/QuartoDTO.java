@@ -20,8 +20,9 @@ public class QuartoDTO {
 		this.id = obj.getId();
 		this.numero = obj.getNumero();
 		this.andar = obj.getAndar();
+		/*
 		this.tipoDoQuarto = obj.getTipoQuarto();
-		this.status = obj.getStatus();
+		this.status = obj.getStatus();*/
 	}
 
 

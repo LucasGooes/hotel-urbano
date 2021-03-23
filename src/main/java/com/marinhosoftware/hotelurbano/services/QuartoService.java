@@ -20,5 +20,10 @@ public class QuartoService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Quarto.class.getName()));
 	}
+	
+	public Quarto insert(Quarto obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 
 }
