@@ -1,8 +1,11 @@
 package com.marinhosoftware.hotelurbano.dto;
 
+import java.io.Serializable;
+
 import com.marinhosoftware.hotelurbano.domain.Quarto;
 
-public class QuartoDTO {
+public class QuartoDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String numero;
@@ -13,19 +16,14 @@ public class QuartoDTO {
 	public QuartoDTO() {
 	}
 
-	
-	
 	public QuartoDTO(Quarto obj) {
 		super();
 		this.id = obj.getId();
 		this.numero = obj.getNumero();
 		this.andar = obj.getAndar();
-		/*
-		this.tipoDoQuarto = obj.getTipoQuarto();
-		this.status = obj.getStatus();*/
+		this.tipoDoQuarto = obj.getTipoQuarto().getCod();
+		this.status = obj.getStatus().getCod();
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -66,7 +64,4 @@ public class QuartoDTO {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	
-	
-
 }

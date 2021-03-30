@@ -1,5 +1,6 @@
 package com.marinhosoftware.hotelurbano.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,10 @@ public class QuartoService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("NÃO É POSSÍVEL EXCLUIR UM QUARTO QUE POSSUI RESERVAS E/OU MANUTENÇÕES REGISTRADAS");
 		}
+	}
+	
+	public List<Quarto> findAll() {
+		return repo.findAll();
 	}
 
 }
