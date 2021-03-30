@@ -39,7 +39,8 @@ public class QuartoResource {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Quarto obj, @PathVariable Integer id) {
+	public ResponseEntity<Void> update(@RequestBody QuartoDTO objDto, @PathVariable Integer id) {
+		Quarto obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();

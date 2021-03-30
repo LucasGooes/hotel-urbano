@@ -27,14 +27,4 @@ public class ClienteService {
 		return obj;
 	}
 	
-	/*
-	public Cliente fromDTO(ClienteDTO objDto) {
-		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getRg(), objDto.getCpf(), Sexo.toEnum(objDto.getSexo()));
-		cli.getTelefones().add(objDto.getTelefone1());
-		if (objDto.getTelefone2() != null) {
-			cli.getTelefones().add(objDto.getTelefone2());
-		}
-		return cli;
-	}
-	*/
 }
