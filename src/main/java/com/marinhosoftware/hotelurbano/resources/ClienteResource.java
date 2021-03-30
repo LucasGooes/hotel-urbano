@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.marinhosoftware.hotelurbano.domain.Cliente;
-import com.marinhosoftware.hotelurbano.dto.ClienteNewDTO;
 import com.marinhosoftware.hotelurbano.services.ClienteService;
 
 @RestController
@@ -29,11 +28,12 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody ClienteNewDTO objDTO) {
-		Cliente obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> insert(@RequestBody Cliente obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
+	
 
 }

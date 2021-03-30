@@ -28,6 +28,7 @@ public class Cliente implements Serializable {
 	private String nome;
 	private String rg;
 	private String cpf;
+	private String email;
 	private Integer sexo;
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")
@@ -39,12 +40,13 @@ public class Cliente implements Serializable {
 	public Cliente() {
 	}
 
-	public Cliente(Integer id, String nome, String rg, String cpf, Sexo sexo) {
+	public Cliente(Integer id, String nome, String rg, String cpf, String email ,Sexo sexo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.rg = rg;
 		this.cpf = cpf;
+		this.email = email;
 		this.sexo = sexo.getCod();
 	}
 
@@ -127,6 +129,14 @@ public class Cliente implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

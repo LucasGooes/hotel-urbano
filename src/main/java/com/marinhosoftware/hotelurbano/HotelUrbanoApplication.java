@@ -43,9 +43,9 @@ public class HotelUrbanoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Cliente cliente1 = new Cliente(1, "Felipe Gonçalves", "234918378", "38996139297", Sexo.MASCULINO);
-		Cliente cliente2 = new Cliente(2, "Lucas Marcos", "384723524", "86618957826", Sexo.MASCULINO);
-		Cliente cliente3 = new Cliente(3, "Eduarda Guimaraes", "316639862", "09840910337", Sexo.FEMININO);
+		Cliente cliente1 = new Cliente(1, "Felipe Gonçalves", "234918378", "38996139297", "fabio34@gmail.com", Sexo.MASCULINO);
+		Cliente cliente2 = new Cliente(2, "Lucas Marcos", "384723524", "86618957826", "luquinha@gmail.com", Sexo.MASCULINO);
+		Cliente cliente3 = new Cliente(3, "Eduarda Guimaraes", "316639862", "09840910337", "eduarda_gui@gmail.com", Sexo.FEMININO);
 		
 		cliente1.getTelefones().addAll(Arrays.asList("3155409088"));
 		cliente2.getTelefones().addAll(Arrays.asList("3282904799", "045752991"));
