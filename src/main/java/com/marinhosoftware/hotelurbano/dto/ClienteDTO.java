@@ -7,17 +7,22 @@ import com.marinhosoftware.hotelurbano.domain.Cliente;
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private String nome;
+	private String rg;
+	private String cpf;
 	private String email;
+	private Integer sexo;
 	
 	public ClienteDTO() {
 	}
 	
 	public ClienteDTO(Cliente obj) {
-		id = obj.getId();
 		nome = obj.getNome();
+		rg = obj.getRg();
+		cpf = obj.getCpf();
 		email = obj.getEmail();
+		sexo = obj.getSexo().getCod();
+		
 	}
 
 	public String getNome() {
@@ -28,6 +33,22 @@ public class ClienteDTO implements Serializable {
 		this.nome = nome;
 	}
 
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -36,12 +57,12 @@ public class ClienteDTO implements Serializable {
 		this.email = email;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getSexo() {
+		return sexo;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setSexo(Integer sexo) {
+		this.sexo = sexo;
 	}
 
 }

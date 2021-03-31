@@ -52,7 +52,7 @@ public class QuartoService {
 	}
 	
 	public Quarto fromDTO(QuartoDTO objDto) {
-		return new Quarto(null, objDto.getNumero(), null, TipoQuarto.toEnum(objDto.getTipoDoQuarto()), StatusQuarto.toEnum(objDto.getStatus()));
+		return new Quarto(null, objDto.getNumero(), null, TipoQuarto.toEnum(objDto.getTipoQuarto()), StatusQuarto.toEnum(objDto.getStatus()));
 	}
 
 	private void updateData(Quarto newObj, Quarto obj) {

@@ -1,6 +1,8 @@
 package com.marinhosoftware.hotelurbano.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.marinhosoftware.hotelurbano.domain.Cliente;
+import com.marinhosoftware.hotelurbano.dto.ClienteDTO;
 import com.marinhosoftware.hotelurbano.services.ClienteService;
 
 @RestController
@@ -34,6 +37,27 @@ public class ClienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody ClienteDTO objDto, @PathVariable Integer id) {
+		Cliente obj = service.fromDTO(objDto);
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Cliente> delete(@PathVariable Integer id) {
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<ClienteDTO>> findAll() {
+		List<Cliente> list = service.findAll();
+		List<ClienteDTO> listDto = list.stream()
+				.map(obj -> new ClienteDTO(obj))
+				.collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}
 
 }

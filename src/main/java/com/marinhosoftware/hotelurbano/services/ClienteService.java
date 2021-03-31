@@ -1,12 +1,17 @@
 package com.marinhosoftware.hotelurbano.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.marinhosoftware.hotelurbano.domain.Cliente;
+import com.marinhosoftware.hotelurbano.domain.enums.Sexo;
+import com.marinhosoftware.hotelurbano.dto.ClienteDTO;
 import com.marinhosoftware.hotelurbano.repositories.ClienteRepository;
+import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
 import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
 
 @Service
@@ -25,6 +30,34 @@ public class ClienteService {
 		obj.setId(null);
 		obj = repo.save(obj);
 		return obj;
+	}
+	
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+	
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repo.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("NÃO É POSSÍVEL EXCLUIR UM CLIENTE QUE POSSUI RESERVAS REGISTRADAS");
+		}
+	}
+	
+	public List<Cliente> findAll() {
+		return repo.findAll();
+	}
+	
+	public Cliente fromDTO(ClienteDTO objDto) {
+		return new Cliente(null, objDto.getNome(), objDto.getRg(), objDto.getCpf(), objDto.getEmail(), Sexo.toEnum(objDto.getSexo()));
+	}
+
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 	
 }

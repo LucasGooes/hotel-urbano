@@ -7,7 +7,6 @@ import com.marinhosoftware.hotelurbano.domain.Quarto;
 public class QuartoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
 	private String numero;
 	private String andar;
 	private Integer tipoQuarto;
@@ -40,19 +39,11 @@ public class QuartoDTO implements Serializable {
 		this.andar = andar;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getTipoDoQuarto() {
+	public Integer getTipoQuarto() {
 		return tipoQuarto;
 	}
 
-	public void setTipoDoQuarto(Integer tipoQuarto) {
+	public void setTipoQuarto(Integer tipoQuarto) {
 		this.tipoQuarto = tipoQuarto;
 	}
 
