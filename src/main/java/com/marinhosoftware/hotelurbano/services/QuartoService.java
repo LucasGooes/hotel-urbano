@@ -8,6 +8,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.marinhosoftware.hotelurbano.domain.Quarto;
+import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
+import com.marinhosoftware.hotelurbano.domain.enums.TipoQuarto;
 import com.marinhosoftware.hotelurbano.dto.QuartoDTO;
 import com.marinhosoftware.hotelurbano.repositories.QuartoRepository;
 import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
@@ -33,7 +35,7 @@ public class QuartoService {
 	public Quarto update(Quarto obj) {
 		Quarto newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return repo.save(obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -50,7 +52,7 @@ public class QuartoService {
 	}
 	
 	public Quarto fromDTO(QuartoDTO objDto) {
-		return new Quarto(null, objDto.getNumero(), objDto.getAndar(), objDto.getTipoDoQuarto(), objDto.getStatus());
+		return new Quarto(null, objDto.getNumero(), null, TipoQuarto.toEnum(objDto.getTipoDoQuarto()), StatusQuarto.toEnum(objDto.getStatus()));
 	}
 
 	private void updateData(Quarto newObj, Quarto obj) {

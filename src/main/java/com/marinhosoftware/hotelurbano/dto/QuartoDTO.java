@@ -3,15 +3,14 @@ package com.marinhosoftware.hotelurbano.dto;
 import java.io.Serializable;
 
 import com.marinhosoftware.hotelurbano.domain.Quarto;
-import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
-import com.marinhosoftware.hotelurbano.domain.enums.TipoQuarto;
 
 public class QuartoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private Integer id;
 	private String numero;
 	private String andar;
-	private Integer tipoDoQuarto;
+	private Integer tipoQuarto;
 	private Integer status;
 	
 	public QuartoDTO() {
@@ -21,8 +20,8 @@ public class QuartoDTO implements Serializable {
 		super();
 		this.numero = obj.getNumero();
 		this.andar = obj.getAndar();
-		this.tipoDoQuarto = obj.getTipoQuarto().getCod();
-		this.status = obj.getStatus().getCod();
+		this.status= obj.getTipoQuarto().getCod();
+		this.tipoQuarto = obj.getStatus().getCod();
 	}
 
 	public String getNumero() {
@@ -33,28 +32,36 @@ public class QuartoDTO implements Serializable {
 		this.numero = numero;
 	}
 
-	public TipoQuarto getTipoDoQuarto() {
-		return TipoQuarto.toEnum(tipoDoQuarto);
-	}
-
-	public void setTipoDoQuarto(TipoQuarto tipoDoQuarto) {
-		this.tipoDoQuarto = tipoDoQuarto.getCod();
-	}
-
-	public StatusQuarto getStatus() {
-		return StatusQuarto.toEnum(status);
-	}
-
-	public void setStatus(StatusQuarto status) {
-		this.status = status.getCod();
-	}
-
 	public String getAndar() {
 		return andar;
 	}
 
 	public void setAndar(String andar) {
 		this.andar = andar;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getTipoDoQuarto() {
+		return tipoQuarto;
+	}
+
+	public void setTipoDoQuarto(Integer tipoQuarto) {
+		this.tipoQuarto = tipoQuarto;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 }

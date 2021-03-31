@@ -42,8 +42,8 @@ public class Quarto implements Serializable {
 		this.id = id;
 		this.numero = numero;
 		this.andar = andar;
-		this.tipoQuarto = tipoQuarto.getCod();
-		this.status = status.getCod();
+		this.tipoQuarto = (tipoQuarto==null) ? null : tipoQuarto.getCod();
+		this.status = (status==null) ? null : status.getCod();
 	}
 
 	public Integer getId() {
