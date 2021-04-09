@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.marinhosoftware.hotelurbano.domain.Quarto;
 import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
@@ -27,6 +28,7 @@ public class QuartoService {
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Quarto.class.getName()));
 	}
 	
+	@Transactional
 	public Quarto insert(Quarto obj) {
 		obj.setId(null);
 		return repo.save(obj);

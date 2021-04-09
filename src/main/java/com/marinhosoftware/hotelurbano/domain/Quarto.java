@@ -86,6 +86,7 @@ public class Quarto implements Serializable {
 		this.status = status.getCod();
 	}
 	
+	@JsonIgnore
 	public List<Manutencao> getManutencoes() {
 		return manutencoes;
 	}
