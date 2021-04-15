@@ -1,8 +1,8 @@
 package com.marinhosoftware.hotelurbano.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,9 +25,9 @@ public class Reserva implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date dataInicio;
+	private LocalDate dataInicio;
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private Date dataFim;
+	private LocalDate dataFim;
 	private double valorTotal;
 	private int quantDias;
 	private double valordiaria;
@@ -49,7 +49,7 @@ public class Reserva implements Serializable {
 	public Reserva() {
 	}
 
-	public Reserva(Integer id, Date dataInicio, Date dataFim, double valorTotal, int quantDias, double valordiaria,
+	public Reserva(Integer id, LocalDate dataInicio, LocalDate dataFim, double valorTotal, int quantDias, double valordiaria,
 			Cliente cliente) {
 		super();
 		this.id = id;
@@ -69,19 +69,19 @@ public class Reserva implements Serializable {
 		this.id = id;
 	}
 
-	public Date getDataInicio() {
+	public LocalDate getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public Date getDataFim() {
+	public LocalDate getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
 	}
 

@@ -25,7 +25,7 @@ public class Quarto implements Serializable {
 	private Integer id;
 	private String numero;
 	private String andar;
-	private Integer tipoQuarto;
+	private Integer tipoQuarto;	
 	private Integer status;
 	
 	@OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL)
@@ -102,6 +102,17 @@ public class Quarto implements Serializable {
 
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
+	}
+	
+	//ATENTAR PARA ALTERAÇÕES NO FUTURO COM O ADM DEFININDO O VALOR DAS DIÁRIAS
+	public Double getValorDiaria() {
+		if (this.tipoQuarto == 1) {
+			return 60.00;
+		} else if (this.tipoQuarto == 2) {
+			return 120.00;
+		} else {
+			return 180.00;
+		}
 	}
 
 	@Override

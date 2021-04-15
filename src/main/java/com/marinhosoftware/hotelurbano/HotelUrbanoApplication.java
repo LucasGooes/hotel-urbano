@@ -1,6 +1,7 @@
 package com.marinhosoftware.hotelurbano;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +64,11 @@ public class HotelUrbanoApplication implements CommandLineRunner {
 		qto4.getManutencoes().addAll(Arrays.asList(manutencao1, manutencao3));
 		qto3.getManutencoes().addAll(Arrays.asList(manutencao2));
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		Reserva reserva1 = new Reserva(1, sdf.parse("14/02/2021 18:35"), sdf.parse("24/02/2021 18:35"), 635.00, 10, 60.00, cliente1);
-		Reserva reserva2 = new Reserva(2, sdf.parse("02/03/2021 20:00"), sdf.parse("10/03/2021 18:45"), 1513.00, 8, 180.00, cliente2);
-		Reserva reserva3 = new Reserva(3, sdf.parse("10/03/2021 07:32"), null, 0.00, 16, 260.00, cliente3);
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Reserva reserva1 = new Reserva(1, /*sdf.parse("14/02/2021 18:35")*/ LocalDate.parse("14/02/2021", formato), /*sdf.parse("24/02/2021 18:35")*/ LocalDate.parse("24/02/2021", formato), 635.00, 10, 60.00, cliente1);
+		Reserva reserva2 = new Reserva(2, /*sdf.parse("02/03/2021 20:00")*/ LocalDate.parse("02/03/2021", formato), /*sdf.parse("10/03/2021 18:45")*/ LocalDate.parse("10/03/2021", formato), 1513.00, 8, 180.00, cliente2);
+		Reserva reserva3 = new Reserva(3, LocalDate.now(), null, 0.00, 16, 260.00, cliente3);
 		
 		Servico servico1 = new Servico(1, "Almoço", "Carne Cozida", 35.00, reserva1);
 		Servico servico2 = new Servico(2, "Limpeza", "Limpeza a nível médio", 20.00, reserva2);

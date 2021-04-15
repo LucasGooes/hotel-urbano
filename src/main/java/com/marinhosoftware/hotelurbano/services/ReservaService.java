@@ -1,5 +1,6 @@
 package com.marinhosoftware.hotelurbano.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,13 @@ public class ReservaService {
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Reserva.class.getName()));
 	}
 	
+	//QUARTOS E CLIENTE
 	@Transactional
 	public Reserva insert(Reserva obj) {
 		obj.setId(null);
+		obj.setDataInicio(LocalDate.now());
+		obj.setDataFim(null);
+		
 		obj = repo.save(obj);
 		return obj;
 	}
