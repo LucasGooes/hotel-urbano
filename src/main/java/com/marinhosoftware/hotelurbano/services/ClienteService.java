@@ -54,8 +54,13 @@ public class ClienteService {
 	}
 	
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(null, objDto.getNome(), objDto.getRg(), objDto.getCpf(), objDto.getEmail(), Sexo.toEnum(objDto.getSexo()));
-	}
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getRg(), objDto.getCpf(), objDto.getEmail(), Sexo.toEnum(objDto.getSexo()));
+		cli.getTelefones().add(objDto.getTelefone1());
+		if ( objDto.getTelefone2() != null) {
+			cli.getTelefones().add(objDto.getTelefone2());
+		}
+		return cli;
+	} 
 
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
