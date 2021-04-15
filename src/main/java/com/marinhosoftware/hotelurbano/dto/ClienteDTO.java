@@ -1,6 +1,7 @@
 package com.marinhosoftware.hotelurbano.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import com.marinhosoftware.hotelurbano.domain.Cliente;
 
@@ -24,6 +25,7 @@ public class ClienteDTO implements Serializable {
 		cpf = obj.getCpf();
 		email = obj.getEmail();
 		sexo = obj.getSexo().getCod();
+		this.setTelefones(obj.getTelefones());
 	}
 
 	public String getNome() {
@@ -70,16 +72,24 @@ public class ClienteDTO implements Serializable {
 		return telefone1;
 	}
 
-	public void setTelefone1(String telefone1) {
-		this.telefone1 = telefone1;
-	}
-
 	public String getTelefone2() {
+		if(this.telefone2 == null) {
+			return "";
+		}
 		return telefone2;
 	}
-
-	public void setTelefone2(String telefone2) {
-		this.telefone2 = telefone2;
+	
+	public void setTelefones(Set<String> telefones) {
+		// VER UMA FORMA MAIS ELEGANTE DE IMPLEMENTAR ESSA REGRA
+		int count = 0;
+		for (String tel: telefones) {
+			if (count == 0)
+				this.telefone1 = tel;
+			if (count > 0 ) {
+				this.telefone2 = tel;
+			}
+			count++;
+		}
 	}
 
 }
