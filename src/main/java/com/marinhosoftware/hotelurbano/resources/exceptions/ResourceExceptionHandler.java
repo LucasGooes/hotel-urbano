@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
+import com.marinhosoftware.hotelurbano.services.exceptions.DataIntegrityException;
+import com.marinhosoftware.hotelurbano.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

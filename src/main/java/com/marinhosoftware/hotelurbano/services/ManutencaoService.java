@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.marinhosoftware.hotelurbano.domain.Manutencao;
 import com.marinhosoftware.hotelurbano.repositories.ManutencaoRepository;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
+import com.marinhosoftware.hotelurbano.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ManutencaoService {

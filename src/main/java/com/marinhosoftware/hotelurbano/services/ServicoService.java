@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.marinhosoftware.hotelurbano.domain.Servico;
 import com.marinhosoftware.hotelurbano.repositories.ServicoRepository;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
+import com.marinhosoftware.hotelurbano.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ServicoService {

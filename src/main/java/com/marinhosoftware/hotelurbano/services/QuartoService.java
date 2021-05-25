@@ -13,8 +13,8 @@ import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
 import com.marinhosoftware.hotelurbano.domain.enums.TipoQuarto;
 import com.marinhosoftware.hotelurbano.dto.QuartoDTO;
 import com.marinhosoftware.hotelurbano.repositories.QuartoRepository;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
+import com.marinhosoftware.hotelurbano.services.exceptions.DataIntegrityException;
+import com.marinhosoftware.hotelurbano.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class QuartoService {

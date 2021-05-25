@@ -1,4 +1,4 @@
-package com.marinhosoftware.hotelurbano.serivces.exceptions;
+package com.marinhosoftware.hotelurbano.services.exceptions;
 
 public class DataIntegrityException extends RuntimeException {
 	

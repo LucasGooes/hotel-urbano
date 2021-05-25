@@ -13,8 +13,8 @@ import com.marinhosoftware.hotelurbano.domain.Quarto;
 import com.marinhosoftware.hotelurbano.domain.Reserva;
 import com.marinhosoftware.hotelurbano.dto.NovaReservaDTO;
 import com.marinhosoftware.hotelurbano.repositories.ReservaRepository;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
+import com.marinhosoftware.hotelurbano.services.exceptions.DataIntegrityException;
+import com.marinhosoftware.hotelurbano.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ReservaService {

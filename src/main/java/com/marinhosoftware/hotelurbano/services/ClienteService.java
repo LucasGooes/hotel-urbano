@@ -12,8 +12,8 @@ import com.marinhosoftware.hotelurbano.domain.Cliente;
 import com.marinhosoftware.hotelurbano.domain.enums.Sexo;
 import com.marinhosoftware.hotelurbano.dto.ClienteDTO;
 import com.marinhosoftware.hotelurbano.repositories.ClienteRepository;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
-import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
+import com.marinhosoftware.hotelurbano.services.exceptions.DataIntegrityException;
+import com.marinhosoftware.hotelurbano.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
