@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.marinhosoftware.hotelurbano.domain.Quarto;
+import com.marinhosoftware.hotelurbano.domain.enums.StatusQuarto;
 import com.marinhosoftware.hotelurbano.dto.QuartoDTO;
 import com.marinhosoftware.hotelurbano.services.QuartoService;
 
@@ -28,6 +30,12 @@ public class QuartoResource {
 	public ResponseEntity<Quarto> find(@PathVariable Integer id) {
 		Quarto obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping("disponiveis")
+	public ResponseEntity<List<Quarto>> buscarQuartosDisponiveis() {
+		List<Quarto> lista = service.buscarQuartosDisponiveis(StatusQuarto.DISPONIVEL.getCod());;
+		return ResponseEntity.ok().body(lista);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

@@ -11,6 +11,7 @@ public class QuartoDTO implements Serializable {
 	private String andar;
 	private Integer tipoQuarto;
 	private Integer status;
+	private Double valorDiaria;
 	
 	public QuartoDTO() {
 	}
@@ -54,5 +55,14 @@ public class QuartoDTO implements Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+
+	public Double getValorDiaria() {
+		return valorDiaria;
+	}
+
+	public void setValorDiaria(Double valorDiaria) {
+		this.valorDiaria = valorDiaria;
+	}
+
 	
 }

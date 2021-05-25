@@ -9,13 +9,21 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.marinhosoftware.hotelurbano.domain.Quarto;
 import com.marinhosoftware.hotelurbano.domain.Reserva;
+import com.marinhosoftware.hotelurbano.dto.NovaReservaDTO;
 import com.marinhosoftware.hotelurbano.repositories.ReservaRepository;
 import com.marinhosoftware.hotelurbano.serivces.exceptions.DataIntegrityException;
 import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundException;
 
 @Service
 public class ReservaService {
+	
+	@Autowired
+	private QuartoService quartoService;
+	
+	@Autowired
+	private ClienteService clienteService;
 	
 	@Autowired
 	private ReservaRepository repo;
@@ -29,10 +37,6 @@ public class ReservaService {
 	//QUARTOS E CLIENTE
 	@Transactional
 	public Reserva insert(Reserva obj) {
-		obj.setId(null);
-		obj.setDataInicio(LocalDate.now());
-		obj.setDataFim(null);
-		
 		obj = repo.save(obj);
 		return obj;
 	}
@@ -44,6 +48,7 @@ public class ReservaService {
 		return repo.save(newObj);
 	}
 	*/
+	
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -56,11 +61,24 @@ public class ReservaService {
 	public List<Reserva> findAll() {
 		return repo.findAll();
 	}
-	/*
-	public Reserva fromDTO(ReservaDTO objDto) {
-		return new Reserva(null, objDto.getNome(), objDto.getRg(), objDto.getCpf(), objDto.getEmail(), Sexo.toEnum(objDto.getSexo()));
+	
+	public Reserva fromDTO(NovaReservaDTO objDto) {
+		Reserva reserva = new Reserva();
+		reserva.setId(null);
+		reserva.setDataInicio(LocalDate.now());
+		reserva.setDataFim(null);
+		Quarto quarto = new Quarto();
+		for (Integer id: objDto.getQuartoId()) {
+			quarto = quartoService.find(id);
+			reserva.getQuartos().add(quarto);
+		}
+		reserva.setValorDiariaTotal(reserva.getQuartos());
+		reserva.setQuantDias(objDto.getQuantDias());
+		reserva.setValorTotal();
+		reserva.setCliente(clienteService.find(objDto.getClienteId()));
+		return reserva;
 	}
-
+	 /*
 	private void updateData(Reserva newObj, Reserva obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());

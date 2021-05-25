@@ -18,43 +18,47 @@ import com.marinhosoftware.hotelurbano.serivces.exceptions.ObjectNotFoundExcepti
 
 @Service
 public class QuartoService {
-	
+
 	@Autowired
 	private QuartoRepository repo;
-	
+
 	public Quarto find(Integer id) {
 		Optional<Quarto> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Quarto.class.getName()));
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Quarto.class.getName()));
 	}
-	
+
 	@Transactional
 	public Quarto insert(Quarto obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
-	
+
 	public Quarto update(Quarto obj) {
 		Quarto newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
-	
+
+	// SE FOR POSSIVEL, CRIAR O METODO ATUALIZAR TIPO QUARTO E ATUALIZAR STATUS DO
+	// QUARTO E NORMALIZAR ISSO NO DIAGRAMA
+
 	public void delete(Integer id) {
 		find(id);
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("NÃO É POSSÍVEL EXCLUIR UM QUARTO QUE POSSUI RESERVAS E/OU MANUTENÇÕES REGISTRADAS");
+			throw new DataIntegrityException(
+					"NÃO É POSSÍVEL EXCLUIR UM QUARTO QUE POSSUI RESERVAS E/OU MANUTENÇÕES REGISTRADAS");
 		}
 	}
-	
+
 	public List<Quarto> findAll() {
 		return repo.findAll();
 	}
-	
+
 	public Quarto fromDTO(QuartoDTO objDto) {
-		return new Quarto(null, objDto.getNumero(), null, TipoQuarto.toEnum(objDto.getTipoQuarto()), StatusQuarto.toEnum(objDto.getStatus()));
+		return new Quarto(null, objDto.getNumero(), null, TipoQuarto.toEnum(objDto.getTipoQuarto()), StatusQuarto.toEnum(objDto.getStatus()), objDto.getValorDiaria());
 	}
 
 	private void updateData(Quarto newObj, Quarto obj) {
@@ -62,5 +66,9 @@ public class QuartoService {
 		newObj.setTipoQuarto(obj.getTipoQuarto());
 		newObj.setStatus(obj.getStatus());
 	}
-	
+
+	public List<Quarto> buscarQuartosDisponiveis(int status) {
+		return repo.findByStatus(status);
+	}
+
 }

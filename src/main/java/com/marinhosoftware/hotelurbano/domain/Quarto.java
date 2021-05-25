@@ -27,6 +27,7 @@ public class Quarto implements Serializable {
 	private String andar;
 	private Integer tipoQuarto;	
 	private Integer status;
+	private Double valorDiaria;
 	
 	@OneToMany(mappedBy = "quarto", cascade = CascadeType.ALL)
 	private List<Manutencao> manutencoes = new ArrayList<>();
@@ -37,13 +38,14 @@ public class Quarto implements Serializable {
 	public Quarto() {
 	}
 
-	public Quarto(Integer id, String numero, String andar, TipoQuarto tipoQuarto, StatusQuarto status) {
+	public Quarto(Integer id, String numero, String andar, TipoQuarto tipoQuarto, StatusQuarto status, Double valorDiaria) {
 		super();
 		this.id = id;
 		this.numero = numero;
 		this.andar = andar;
 		this.tipoQuarto = (tipoQuarto==null) ? null : tipoQuarto.getCod();
 		this.status = (status==null) ? null : status.getCod();
+		this.valorDiaria = valorDiaria;
 	}
 
 	public Integer getId() {
@@ -86,6 +88,14 @@ public class Quarto implements Serializable {
 		this.status = status.getCod();
 	}
 	
+	public Double getValorDiaria() {
+		return valorDiaria;
+	}
+
+	public void setValorDiaria(Double valorDiaria) {
+		this.valorDiaria = valorDiaria;
+	}
+	
 	@JsonIgnore
 	public List<Manutencao> getManutencoes() {
 		return manutencoes;
@@ -104,16 +114,6 @@ public class Quarto implements Serializable {
 		this.reservas = reservas;
 	}
 	
-	//ATENTAR PARA ALTERAÇÕES NO FUTURO COM O ADM DEFININDO O VALOR DAS DIÁRIAS
-	public Double getValorDiaria() {
-		if (this.tipoQuarto == 1) {
-			return 60.00;
-		} else if (this.tipoQuarto == 2) {
-			return 120.00;
-		} else {
-			return 180.00;
-		}
-	}
 
 	@Override
 	public int hashCode() {

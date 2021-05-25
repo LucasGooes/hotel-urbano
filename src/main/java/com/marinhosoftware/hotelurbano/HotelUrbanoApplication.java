@@ -52,10 +52,10 @@ public class HotelUrbanoApplication implements CommandLineRunner {
 		cliente2.getTelefones().addAll(Arrays.asList("3282904799", "045752991"));
 		cliente3.getTelefones().addAll(Arrays.asList("8307088493"));
 		
-		Quarto qto1 = new Quarto(1, "11", "01", TipoQuarto.STANDARD, StatusQuarto.DISPONIVEL);
-		Quarto qto2 = new Quarto(2, "12", "01", TipoQuarto.DELUXE, StatusQuarto.OCUPADO);
-		Quarto qto3 = new Quarto(3, "21", "02", TipoQuarto.STANDARD, StatusQuarto.OCUPADO);
-		Quarto qto4 = new Quarto(4, "22", "02", TipoQuarto.MASTER, StatusQuarto.MANUTENCAO);
+		Quarto qto1 = new Quarto(1, "11", "01", TipoQuarto.STANDARD, StatusQuarto.DISPONIVEL, 60.00);
+		Quarto qto2 = new Quarto(2, "12", "01", TipoQuarto.DELUXE, StatusQuarto.OCUPADO, 120.00);
+		Quarto qto3 = new Quarto(3, "21", "02", TipoQuarto.STANDARD, StatusQuarto.OCUPADO, 60.00);
+		Quarto qto4 = new Quarto(4, "22", "02", TipoQuarto.MASTER, StatusQuarto.MANUTENCAO, 200.00);
 		
 		Manutencao manutencao1 = new Manutencao(1, "Concerto de encanamento", 120.00, qto4);
 		Manutencao manutencao2 = new Manutencao(2, "Concerto de Arcondicionado", 80.00, qto3);

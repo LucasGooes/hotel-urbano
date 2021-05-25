@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.marinhosoftware.hotelurbano.domain.Reserva;
+import com.marinhosoftware.hotelurbano.dto.NovaReservaDTO;
 import com.marinhosoftware.hotelurbano.services.ReservaService;
 
 @RestController
@@ -28,7 +29,8 @@ public class ReservaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Reserva obj) {
+	public ResponseEntity<Void> insert(@RequestBody NovaReservaDTO objDto) {
+		Reserva obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();

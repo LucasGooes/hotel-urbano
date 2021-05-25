@@ -30,7 +30,7 @@ public class Reserva implements Serializable {
 	private LocalDate dataFim;
 	private double valorTotal;
 	private int quantDias;
-	private double valordiaria;
+	private double valorDiariaTotal;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -49,7 +49,7 @@ public class Reserva implements Serializable {
 	public Reserva() {
 	}
 
-	public Reserva(Integer id, LocalDate dataInicio, LocalDate dataFim, double valorTotal, int quantDias, double valordiaria,
+	public Reserva(Integer id, LocalDate dataInicio, LocalDate dataFim, double valorTotal, int quantDias, double valorDiariaTotal,
 			Cliente cliente) {
 		super();
 		this.id = id;
@@ -57,7 +57,7 @@ public class Reserva implements Serializable {
 		this.dataFim = (dataFim==null) ? null : dataFim;
 		this.valorTotal = valorTotal;
 		this.quantDias = quantDias;
-		this.valordiaria = valordiaria;
+		this.valorDiariaTotal = valorDiariaTotal;
 		this.cliente = cliente;
 	}
 
@@ -89,8 +89,8 @@ public class Reserva implements Serializable {
 		return valorTotal;
 	}
 
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
+	public void setValorTotal() {	
+		this.valorTotal = quantDias * valorDiariaTotal;
 	}
 
 	public int getQuantDias() {
@@ -99,14 +99,6 @@ public class Reserva implements Serializable {
 
 	public void setQuantDias(int quantDias) {
 		this.quantDias = quantDias;
-	}
-
-	public double getValordiaria() {
-		return valordiaria;
-	}
-
-	public void setValordiaria(double valordiaria) {
-		this.valordiaria = valordiaria;
 	}
 
 	public Cliente getCliente() {
@@ -131,6 +123,19 @@ public class Reserva implements Serializable {
 
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
+	}
+	
+	//ATENTAR PARA ALTERAÇÕES NO FUTURO COM O ADM DEFININDO O VALOR DAS DIÁRIAS
+	public Double getValorDiariaTotal() {
+		return valorDiariaTotal;
+		}
+	
+	public void setValorDiariaTotal(List<Quarto> listaQuartos) {
+		Double valorDiariaTotal = 0.00;
+		for (Quarto quarto : listaQuartos) {
+			valorDiariaTotal = valorDiariaTotal + quarto.getValorDiaria();
+		}
+		this.valorDiariaTotal = valorDiariaTotal;
 	}
 
 	@Override

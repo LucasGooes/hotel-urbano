@@ -85,7 +85,7 @@ public class ClienteDTO implements Serializable {
 		for (String tel: telefones) {
 			if (count == 0)
 				this.telefone1 = tel;
-			if (count > 0 ) {
+			if (count>0 && tel != null) {
 				this.telefone2 = tel;
 			}
 			count++;
